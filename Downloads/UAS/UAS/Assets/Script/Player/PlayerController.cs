@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRender;
+    private Vector3 respawnPoint;
 
     private bool facingLeft = false;
 
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         mySpriteRender = GetComponent<SpriteRenderer>();
+
+         respawnPoint = transform.position; 
     }
 
     private void OnEnable() {
@@ -60,5 +64,20 @@ public class PlayerController : MonoBehaviour
             mySpriteRender.flipX = false;
             FacingLeft = false;
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "NextLevel") {
+            SceneManager.LoadScene(1); 
+            respawnPoint = transform.position; 
+        } else if (collision.tag == "PreviousLevel") {
+            SceneManager.LoadScene(0);
+            respawnPoint = transform.position; 
+        } else if (collision.tag == "NextLevel2") {
+            SceneManager.LoadScene(2);
+            respawnPoint = transform.position; 
+        } else if (collision.tag == "NextLevel3") {
+            SceneManager.LoadScene(3);
+            respawnPoint = transform.position; 
+        } 
     }
 }
