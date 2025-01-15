@@ -31,9 +31,10 @@ public class PlayerController : MonoBehaviour
         respawnPoint = transform.position; 
     }
 
-        private void Start() {
+void Start() {
+    DontDestroyOnLoad(gameObject); // Player tidak dihancurkan saat berpindah scene
+}
 
-    }
 
      private void OnDisable() {
         playerControls.Disable();
