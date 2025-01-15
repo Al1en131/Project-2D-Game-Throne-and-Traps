@@ -31,6 +31,15 @@ public class PlayerController : MonoBehaviour
         respawnPoint = transform.position; 
     }
 
+        private void Start() {
+
+    }
+
+     private void OnDisable() {
+        playerControls.Disable();
+    }
+
+
     private void OnEnable() {
         playerControls.Enable();
     }
@@ -52,7 +61,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Move() {
-        if (knockback.gettingKnockedBack) { return; }
+        if (knockback.gettingKnockedBack || PlayerHealth.Instance.isDead) { return; }
 
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }

@@ -52,7 +52,7 @@ private void OnTriggerStay2D(Collider2D other) {
         switch (pickUpType)
         {
             case PickUpType.GoldCoin:
-                // do goldcoin stuff
+                EconomyManager.Instance.UpdateCurrentGold();
                 Debug.Log("GoldCoin");
                 break;
             case PickUpType.HealthGlobe:
